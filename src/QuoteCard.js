@@ -44,31 +44,37 @@ const quotes = [
       author: "Imam Al-Ghazali"
     }
   ];
-  
-  function QuoteCard() {
+const colors = [
+  '#333', '#082172',' #555', 'green', 'yellowgreen', 'purple', 'blueviolet', 'blue', 'violet'
+]
+  function QuoteCard(props) {
+    const {color, setColor} = props;
     const [quote, setQuote] = useState(quotes[0]);
     const random = () => Math.floor(Math.random() * quotes.length);
-    const handleClick = () => setQuote(quotes[random()])
+    const handleClick = () => {
+      setQuote(quotes[random()])
+      setColor(colors[random()])
+    }
     
   return (
     <div className="card quote p-3 d-flex align-items-center">
         <div className="row">
             <div className="col">
-                <h1>{quote.text}</h1>
+                <h1 style={{color: color}}>{quote.text}</h1>
             </div>
         </div>
         <div className="author">
-            <p>-{quote.author}</p>
+            <p style={{color: color}}>-{quote.author}</p>
         </div>
         <div className="hr"/>
         <div className="row d-flex w-100 p-2">
             <div className="col">
-              <a href="twitter/intent/tweet" target="_blank" className="btn btn-default">
+              <a href="twitter/intent/tweet" target="_blank" className="btn btn-default" style={{backgroundColor: color}}>
                 <i className="fa-brands fa-twitter"></i>
                 </a>
             </div>
             <div className="col d-flex justify-content-end">
-              <button className="btn btn-default" onClick={handleClick}>
+              <button className="btn btn-default" onClick={handleClick} style={{backgroundColor: color}}>
                 Next quote
               </button>
             </div>
